@@ -1,0 +1,17 @@
+{
+  "name": "repvault",
+  "version": "1.0.0",
+  "description": "RepVault — Your 7-Day Gym Split Manager",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": ["gym", "workout", "fitness"],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "vite": "^6.2.1"
+  }
+}

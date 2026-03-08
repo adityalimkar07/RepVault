@@ -1,0 +1,467 @@
+/* ========================================
+   RepVault — 7-Day Gym Split
+   Main Stylesheet
+   ======================================== */
+
+/* --- CSS Variables --- */
+:root {
+  --bg: #0a0a0f;
+  --surface: #111118;
+  --border: #1e1e2e;
+  --accent1: #f5a623;
+  --accent2: #e84393;
+  --accent3: #00d4aa;
+  --accent4: #6c63ff;
+  --accent5: #ff6b35;
+  --accent6: #4ecdc4;
+  --accent7: #a8e6cf;
+  --text: #e8e8f0;
+  --muted: #6b6b80;
+}
+
+/* --- Reset --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* --- Base --- */
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Noise overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+/* --- Container --- */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 20px 80px;
+  position: relative;
+  z-index: 1;
+}
+
+/* --- Header --- */
+header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.header-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--accent1);
+  margin-bottom: 16px;
+  display: block;
+}
+
+h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(60px, 10vw, 110px);
+  line-height: 0.9;
+  letter-spacing: 2px;
+  background: linear-gradient(135deg, #ffffff 0%, #888 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+h1 .title-sub {
+  font-size: clamp(36px, 6vw, 70px);
+  background: linear-gradient(135deg, var(--accent1) 0%, var(--accent2) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.header-sub {
+  font-size: 15px;
+  color: var(--muted);
+  margin-top: 20px;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+}
+
+/* --- Tip Bar --- */
+.tip-bar {
+  background: linear-gradient(90deg, rgba(245,166,35,0.08), rgba(232,67,147,0.08));
+  border: 1px solid rgba(245,166,35,0.2);
+  border-radius: 12px;
+  padding: 16px 24px;
+  margin-bottom: 50px;
+  font-size: 13px;
+  color: var(--accent1);
+  font-family: 'Space Mono', monospace;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.tip-bar span {
+  color: var(--muted);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+}
+
+/* --- Legend --- */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+/* --- Days Grid --- */
+.days-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* --- Day Card --- */
+.day-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.day-card:hover {
+  transform: translateY(-2px);
+}
+
+.day-header {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: center;
+  gap: 20px;
+  padding: 24px 28px;
+  cursor: pointer;
+  position: relative;
+}
+
+.day-header::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  border-radius: 0 4px 4px 0;
+}
+
+.day-number {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 48px;
+  line-height: 1;
+  color: var(--border);
+  width: 60px;
+}
+
+.day-info {
+  flex: 1;
+}
+
+.day-name {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.day-muscles {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+
+.day-badge {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.chevron {
+  font-size: 18px;
+  color: var(--muted);
+  transition: transform 0.3s ease;
+}
+
+.day-card.open .chevron {
+  transform: rotate(180deg);
+}
+
+/* --- Day Body (collapsible) --- */
+.day-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              padding 0.3s ease;
+  padding: 0 28px;
+}
+
+.day-card.open .day-body {
+  max-height: 3000px;
+  padding: 0 28px 28px;
+}
+
+/* --- Muscle Section --- */
+.muscle-section {
+  margin-bottom: 28px;
+}
+
+.muscle-section:last-child {
+  margin-bottom: 0;
+}
+
+.muscle-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.muscle-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.muscle-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  letter-spacing: 2px;
+}
+
+.muscle-count {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  margin-left: auto;
+}
+
+/* --- Exercises Grid --- */
+.exercises-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 10px;
+}
+
+.exercise-item {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  transition: background 0.15s, transform 0.15s;
+  cursor: default;
+}
+
+.exercise-item:hover {
+  background: rgba(255,255,255,0.06);
+  transform: translateY(-1px);
+}
+
+.ex-num {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  flex-shrink: 0;
+  margin-top: 2px;
+  width: 18px;
+}
+
+.ex-name {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.ex-tag {
+  font-size: 10px;
+  color: var(--muted);
+  font-weight: 300;
+  display: block;
+  margin-top: 2px;
+}
+
+/* --- Divider --- */
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 20px 0;
+}
+
+/* --- Pick Hint --- */
+.pick-hint {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  text-align: center;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 16px;
+  background: rgba(255,255,255,0.02);
+  border-radius: 10px;
+  margin-top: 16px;
+}
+
+/* ========================================
+   Day Color Themes (d1–d7)
+   ======================================== */
+
+/* Day 1 — Purple */
+.d1 .day-header::after { background: var(--accent4); }
+.d1 .day-muscles { color: var(--accent4); }
+.d1 .day-badge { background: rgba(108,99,255,0.15); color: var(--accent4); border: 1px solid rgba(108,99,255,0.3); }
+
+/* Day 2 — Pink */
+.d2 .day-header::after { background: var(--accent2); }
+.d2 .day-muscles { color: var(--accent2); }
+.d2 .day-badge { background: rgba(232,67,147,0.15); color: var(--accent2); border: 1px solid rgba(232,67,147,0.3); }
+
+/* Day 3 — Teal */
+.d3 .day-header::after { background: var(--accent3); }
+.d3 .day-muscles { color: var(--accent3); }
+.d3 .day-badge { background: rgba(0,212,170,0.12); color: var(--accent3); border: 1px solid rgba(0,212,170,0.3); }
+
+/* Day 4 — Gold */
+.d4 .day-header::after { background: var(--accent1); }
+.d4 .day-muscles { color: var(--accent1); }
+.d4 .day-badge { background: rgba(245,166,35,0.12); color: var(--accent1); border: 1px solid rgba(245,166,35,0.3); }
+
+/* Day 5 — Orange */
+.d5 .day-header::after { background: var(--accent5); }
+.d5 .day-muscles { color: var(--accent5); }
+.d5 .day-badge { background: rgba(255,107,53,0.12); color: var(--accent5); border: 1px solid rgba(255,107,53,0.3); }
+
+/* Day 6 — Cyan */
+.d6 .day-header::after { background: var(--accent6); }
+.d6 .day-muscles { color: var(--accent6); }
+.d6 .day-badge { background: rgba(78,205,196,0.12); color: var(--accent6); border: 1px solid rgba(78,205,196,0.3); }
+
+/* Day 7 — Mint */
+.d7 .day-header::after { background: var(--accent7); }
+.d7 .day-muscles { color: var(--accent7); }
+.d7 .day-badge { background: rgba(168,230,207,0.12); color: var(--accent7); border: 1px solid rgba(168,230,207,0.3); }
+
+/* ========================================
+   Muscle Dot Colors
+   ======================================== */
+.dot-chest    { background: var(--accent4); }
+.dot-back     { background: var(--accent2); }
+.dot-bicep    { background: var(--accent3); }
+.dot-tricep   { background: var(--accent1); }
+.dot-shoulder { background: var(--accent5); }
+.dot-core     { background: var(--accent6); }
+.dot-legs     { background: var(--accent7); }
+.dot-glutes   { background: #ff9cf4; }
+.dot-cardio   { background: var(--muted); }
+
+/* ========================================
+   Footer
+   ======================================== */
+footer {
+  text-align: center;
+  margin-top: 60px;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 2px;
+}
+
+/* ========================================
+   Responsive
+   ======================================== */
+@media (max-width: 600px) {
+  .container {
+    padding: 24px 12px 60px;
+  }
+
+  .day-header {
+    grid-template-columns: auto 1fr auto;
+    gap: 12px;
+    padding: 18px 16px;
+  }
+
+  .day-number {
+    font-size: 36px;
+    width: 44px;
+  }
+
+  .day-muscles {
+    font-size: 22px;
+  }
+
+  .day-badge {
+    display: none;
+  }
+
+  .day-body {
+    padding: 0 16px;
+  }
+
+  .day-card.open .day-body {
+    padding: 0 16px 20px;
+  }
+
+  .exercises-list {
+    grid-template-columns: 1fr;
+  }
+
+  .tip-bar {
+    font-size: 11px;
+    padding: 12px 16px;
+  }
+
+  h1 {
+    font-size: clamp(48px, 14vw, 80px);
+  }
+
+  h1 .title-sub {
+    font-size: clamp(28px, 8vw, 50px);
+  }
+
+  .legend {
+    gap: 10px;
+  }
+}
